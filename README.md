@@ -1,4 +1,4 @@
-# my-nuxt-website
+# My Nuxt Website
 
 > My portfolio website rebuilt using nuxt
 
