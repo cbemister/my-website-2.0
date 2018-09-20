@@ -1,6 +1,6 @@
-# My Nuxt Website
+# nuxt-course
 
-> My portfolio website rebuilt using nuxt
+> Nuxt.js course for Udemy
 
 ## Build Setup
 

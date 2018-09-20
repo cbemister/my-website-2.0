@@ -1,8 +1,8 @@
 {
-  "name": "my-nuxt-website",
+  "name": "nuxt-course",
   "version": "1.0.0",
-  "description": "My portfolio website rebuilt using nuxt",
-  "author": "Chris Bemister",
+  "description": "Nuxt.js course for Udemy",
+  "author": "Maximilian Schwarzmüller",
   "private": true,
   "scripts": {
     "dev": "nuxt",
@@ -11,8 +11,12 @@
     "generate": "nuxt generate"
   },
   "dependencies": {
-    "nuxt": "^1.0.0",
-    "@nuxtjs/axios": "^5.0.0"
+    "@nuxtjs/axios": "^4.5.2",
+    "axios": "^0.17.1",
+    "body-parser": "^1.18.2",
+    "express": "^4.16.2",
+    "js-cookie": "^2.2.0",
+    "nuxt": "^1.0.0"
   },
   "devDependencies": {
     "cross-env": "^5.0.1"

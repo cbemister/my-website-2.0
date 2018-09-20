@@ -16,7 +16,7 @@
 
 <script>
 export default {
-  name: 'AppControlInput',
+  name: 'AppInputControl',
   props: {
     controlType: {
       type: String,

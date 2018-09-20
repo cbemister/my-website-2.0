@@ -10,5 +10,6 @@ npm-debug.log
 # Nuxt generate
 dist
 
-# IDE
-.idea
+# Misc
+
+planning.txt
