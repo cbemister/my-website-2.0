@@ -1,6 +1,6 @@
 <template>
-    <div>
-        <PageTitle title="Dynamic Page Template" :subTitle="'Route: ' + $route.params.pages " />
+    <div class="navigation-settings">
+        <PageTitle title="Navigation Setings" subTitle=" Navigation Setings Page " />
     </div>
 </template>
 
