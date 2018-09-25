@@ -5,10 +5,22 @@
       <AppButton style="margin-left: 10px" @click="onLogout">Logout</AppButton>
     </section>
     <section class="existing-posts">
+      <h1>Existing Thoughts</h1>
+      <ThoughtList
+        isAdmin
+        :thoughts="loadedThoughts" />
+    </section>
+    <section class="existing-posts">
       <h1>Existing Posts</h1>
       <PostList
         isAdmin
         :posts="loadedPosts" />
+    </section>
+    <section class="existing-posts">
+      <h1>Existing Pages</h1>
+      <PageList
+        isAdmin
+        :pages="loadedPages" />
     </section>
   </div>
 </template>
@@ -18,8 +30,14 @@ export default {
   layout: "admin",
   middleware: ["check-auth", "auth"],
   computed: {
+    loadedThoughts() {
+      return this.$store.getters.loadedThoughts;
+    },
     loadedPosts() {
       return this.$store.getters.loadedPosts;
+    },
+    loadedPages() {
+      return this.$store.getters.loadedPages;
     }
   },
   methods: {
