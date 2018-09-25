@@ -5,9 +5,23 @@ const createStore = () => {
   return new Vuex.Store({
     state: {
       loadedPosts: [],
+      loadedThoughts: [],
+      loadedPages: [],
       token: null
     },
     mutations: {
+      setThoughts(state, thoughts) {
+        state.loadedThoughts = thoughts;
+      },
+      addThought(state, thought) {
+        state.loadedThoughts.push(thought);
+      },
+      editThought(state, editedThought) {
+        const thoughtIndex = state.loadedThoughts.findIndex(
+          thought => thought.id === editedThought.id
+        );
+        state.loadedThoughts[thoughtIndex] = editedThought;
+      },
       setPosts(state, posts) {
         state.loadedPosts = posts;
       },
@@ -19,6 +33,18 @@ const createStore = () => {
           post => post.id === editedPost.id
         );
         state.loadedPosts[postIndex] = editedPost;
+      },
+      setPages(state, pages) {
+        state.loadedPages = pages;
+      },
+      addPage(state, page) {
+        state.loadedPages.push(page);
+      },
+      editPage(state, editedPage) {
+        const pageIndex = state.loadedPages.findIndex(
+          page => page.id === editedPage.id
+        );
+        state.loadedPages[pageIndex] = editedPage;
       },
       setToken(state, token) {
         state.token = token;
@@ -72,6 +98,72 @@ const createStore = () => {
       },
       setPosts(vuexContext, posts) {
         vuexContext.commit("setPosts", posts);
+      },
+      addThought(vuexContext, thought) {
+        const createdThought = {
+          ...thought,
+          updatedDate: new Date()
+        };
+        return this.$axios
+          .$post(
+            "https://nuxt-course-project-e6cd3.firebaseio.com/thoughts.json?auth=" +
+              vuexContext.state.token,
+            createdThought
+          )
+          .then(data => {
+            vuexContext.commit("addThought", { ...createdThought, id: data.name });
+          })
+          .catch(e => console.log(e));
+      },
+      editThought(vuexContext, editedThought) {
+        return this.$axios
+          .$put(
+            "https://nuxt-course-project-e6cd3.firebaseio.com/thoughts/" +
+              editedThought.id +
+              ".json?auth=" +
+              vuexContext.state.token,
+            editedThought
+          )
+          .then(res => {
+            vuexContext.commit("editThought", editedThought);
+          })
+          .catch(e => console.log(e));
+      },
+      setThoughts(vuexContext, thoughts) {
+        vuexContext.commit("setThoughts", thoughts);
+      },
+      addPage(vuexContext, page) {
+        const createdPage = {
+          ...page,
+          updatedDate: new Date()
+        };
+        return this.$axios
+          .$post(
+            "https://nuxt-course-project-e6cd3.firebaseio.com/pages.json?auth=" +
+              vuexContext.state.token,
+            createdPage
+          )
+          .then(data => {
+            vuexContext.commit("addPage", { ...createdPage, id: data.name });
+          })
+          .catch(e => console.log(e));
+      },
+      editPage(vuexContext, editedPage) {
+        return this.$axios
+          .$put(
+            "https://nuxt-course-project-e6cd3.firebaseio.com/pages/" +
+              editedPage.id +
+              ".json?auth=" +
+              vuexContext.state.token,
+            editedPage
+          )
+          .then(res => {
+            vuexContext.commit("editPage", editedPage);
+          })
+          .catch(e => console.log(e));
+      },
+      setPages(vuexContext, pages) {
+        vuexContext.commit("setThoughts", pages);
       },
       authenticateUser(vuexContext, authData) {
         let authUrl =
