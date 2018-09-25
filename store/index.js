@@ -54,72 +54,42 @@ const createStore = () => {
       }
     },
     actions: {
-      nuxtServerInit(vuexContext, context) {
-        return context.app.$axios
-          .$get("/thoughts.json")
-          .then(data => {
-            const thoughtsArray = [];
-            for (const key in data) {
-              thoughtsArray.push({ ...data[key], id: key });
-            }
-            vuexContext.commit("setThoughts", thoughtsArray);
-          })
-          .catch(e => context.error(e));
+      async nuxtServerInit(vuexContext, context) {
+        
+        const thoughts = await context.app.$axios
+            .$get("/thoughts.json")
+            .then(data => {
+              const thoughtsArray = [];
+              for (const key in data) {
+                thoughtsArray.push({ ...data[key], id: key });
+              }
+              vuexContext.commit("setThoughts", thoughtsArray);
+            })
+            .catch(e => context.error(e));
 
+        const posts = await context.app.$axios
+            .$get("/posts.json")
+            .then(data => {
+              const postsArray = [];
+              for (const key in data) {
+                postsArray.push({ ...data[key], id: key });
+              }
+              vuexContext.commit("setPosts", postsArray);
+            })
+            .catch(e => context.error(e));
 
+        const pages = await context.app.$axios
+            .$get("/pages.json")
+            .then(data => {
+              const pagesArray = [];
+              for (const key in data) {
+                pagesArray.push({ ...data[key], id: key });
+              }
+              vuexContext.commit("setPages", pagesArray);
+            })
+            .catch(e => context.error(e));
 
-
-
-
-
-
-
-
-
-          // axios.all([
-          //   axios.get('http://google.com'),
-          //   axios.get('http://apple.com')
-          // ])
-          // .then(axios.spread((googleRes, appleRes) => {
-          //   // do something with both responses
-          // }));
-
-      },
-      // nuxtServerInit(vuexContext, context) {
-      //   return context.app.$axios
-      //     .$get("/thoughts.json")
-      //     .then(data => {
-      //       const thoughtsArray = [];
-      //       for (const key in data) {
-      //         thoughtsArray.push({ ...data[key], id: key });
-      //       }
-      //       vuexContext.commit("setThoughts", thoughtsArray);
-      //     })
-      //     .catch(e => context.error(e));
-      // },
-      // nuxtServerInit(vuexContext, context) {
-      //   return context.app.$axios
-      //     .$get("/posts.json")
-      //     .then(data => {
-      //       const postsArray = [];
-      //       for (const key in data) {
-      //         postsArray.push({ ...data[key], id: key });
-      //       }
-      //       vuexContext.commit("setPosts", postsArray);
-      //     })
-      //     .catch(e => context.error(e));
-      // },
-      nuxtServerInit(vuexContext, context) {
-        return context.app.$axios
-          .$get("/pages.json")
-          .then(data => {
-            const pagesArray = [];
-            for (const key in data) {
-              pagesArray.push({ ...data[key], id: key });
-            }
-            vuexContext.commit("setPages", pagesArray);
-          })
-          .catch(e => context.error(e));
+          return { thoughts, posts, pages }
       },
       addPost(vuexContext, post) {
         const createdPost = {
