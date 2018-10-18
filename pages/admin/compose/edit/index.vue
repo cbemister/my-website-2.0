@@ -1,14 +1,8 @@
 <template>
     <div class="editor-page">
         <PageTitle title="Editor Page" subTitle=" Editor Landing Page " />
-        <section class="existing-thoughts">
-            <div>Thoughts</div>
-        </section>
         <section class="existing-posts">
             <div>Posts</div>
-        </section>
-        <section class="existing-pages">
-            <div>Pages</div>
         </section>
     </div>
 </template>
