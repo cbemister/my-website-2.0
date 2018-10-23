@@ -2,6 +2,7 @@
   <form @submit.prevent="onSave">
     <AppControlInput v-model="editedPost.author">Author Name</AppControlInput>
     <AppControlInput v-model="editedPost.title">Title</AppControlInput>
+    <AppControlInput v-model="editedPost.slug">Slug</AppControlInput>
     <AppControlInput
       v-model="editedPost.shortDescription">Short Description</AppControlInput>
     <label for="featured">Category: </label>
@@ -41,6 +42,7 @@ export default {
         : {
             author: "Chris Bemister",
             title: "",
+            slug: "",
             category: "",
             featured: false,
             thumbnail: "",
