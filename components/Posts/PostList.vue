@@ -1,13 +1,15 @@
 <template>
   <section class="post-list">
     <PostPreview
-      v-for="post in posts"
+      v-for="post in filteredPosts"
       :key="post.id"
       :id="post.id"
       :is-admin="isAdmin"
       :thumbnail="post.thumbnail"
       :title="post.title"
-      :category="post.category" />
+      :category="post.category"
+      :featured="post.featured"
+      />
   </section>
 </template>
 
@@ -15,6 +17,24 @@
 import PostPreview from '@/components/Posts/PostPreview'
 
 export default {
+   computed: {
+     filteredPosts: function() {
+       return this.posts.filter((post) => {
+         if (this.pageType === 'home') {
+          return post.featured === true;
+         } else if (this.pageType === 'post') {
+          return post.category === this.pageType;
+         } else {
+           return true;
+         }
+       })
+   }
+ },
+//  data () {
+//    return {
+//      pageType: this.pageType
+//    }
+//  },
   components: {
     PostPreview
   },
@@ -26,6 +46,10 @@ export default {
     posts: {
       type: Array,
       required: true
+    },
+    pageType: {
+      type: String,
+      default: ""
     }
   }
 }
