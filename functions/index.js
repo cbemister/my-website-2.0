@@ -17,7 +17,7 @@ const WEBHOOK_URL = 'https://api.netlify.com/build_hooks/5bd1beeb1f12b76175b9fe3
 
 // Reads the content of the node that triggered the function and sends it to the registered Webhook
 // URL.
-exports.webhook = functions.database.ref('/posts/{pushId}').onCreate((snap) => {
+exports.webhook = functions.database.ref('/posts/{pushId}').onWrite((snap) => {
   return request({
     uri: WEBHOOK_URL,
     method: 'POST',
