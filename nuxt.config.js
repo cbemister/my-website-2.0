@@ -84,10 +84,19 @@ module.exports = {
         .then(res => {
           const routes = [];
           for (const key in res.data) {
-            routes.push({
-              route: "/posts/" + key,
-              payload: {postData: res.data[key]}
-            });
+
+            if (key.category === 'page') {
+              routes.push({
+                route: "/" + key.slug,
+                payload: {postData: res.data[key]}
+              });
+            } else {
+              routes.push({
+                route: "/" + key.category + "/" + key.slug,
+                payload: {postData: res.data[key]}
+              });
+            }
+
           }
           return routes;
         });
