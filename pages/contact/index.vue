@@ -4,7 +4,7 @@
       Contact
     </h1>
     <div class="content">
-      <form name="contact" name="contact-page" netlify-honeypot="bot-field" action="thank-you" method="post" netlify>
+      <form name="contact-page" netlify-honeypot="bot-field" action="thank-you" method="post" netlify>
         <label class="form-label" for="name">
           Name:
         </label>
