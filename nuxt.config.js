@@ -50,12 +50,30 @@ module.exports = {
   /*
   ** Nuxt.js modules
   */
-  modules: ["@nuxtjs/axios"],
+  modules: [
+            "@nuxtjs/axios",
+            "@nuxtjs/onesignal", 
+            ["@nuxtjs/pwa", { icon: false }],
+            ['@nuxtjs/google-tag-manager', { id: 'GTM-5S5FK6M' }],
+          ],
   axios: {
     baseURL: process.env.BASE_URL || "https://nuxt-course-project-e6cd3.firebaseio.com/",
     credentials: false
   },
-
+  workbox: {
+    importScripts: [
+        'custom-sw.js'
+    ],
+  },
+  oneSignal: {
+    init: {
+      appId: 'c27fb998-d28a-46b5-a35b-7ddf63756c09',
+      allowLocalhostAsSecureOrigin: true,
+      welcomeNotification: {
+          disable: true
+      }
+    }
+  },
   /*
   ** Build configuration
   */
