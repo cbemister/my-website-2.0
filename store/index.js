@@ -5,9 +5,13 @@ const createStore = () => {
   return new Vuex.Store({
     state: {
       loadedPosts: [],
-      token: null
+      token: null,
+      slug: ''
     },
     mutations: {
+      updateSlug(state, slug) {
+        state.slug = slug;
+      },
       setPosts(state, posts) {
         state.loadedPosts = posts;
       },
@@ -56,6 +60,18 @@ const createStore = () => {
           )
           .then(data => {
             vuexContext.commit("addPost", { ...createdPost, id: data.name });
+          })
+          .catch(e => console.log(e));
+      },
+      setSlug(vuexContext, slug) {
+        return this.$axios
+          .$post(
+            "https://nuxt-course-project-e6cd3.firebaseio.com/settings.json?auth=" +
+              vuexContext.state.token,
+            slug
+          )
+          .then(data => {
+            console.log(data);
           })
           .catch(e => console.log(e));
       },
