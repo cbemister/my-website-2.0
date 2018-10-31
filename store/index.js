@@ -45,7 +45,15 @@ const createStore = () => {
             })
             .catch(e => context.error(e));
 
-          return { posts }
+        const settings = await context.app.$axios
+            .$get("/settings.json")
+            .then(data => {
+              const slug = data.slug
+              vuexContext.commit("updateSlug", slug);
+            })
+            .catch(e => context.error(e));
+
+          return { posts, settings }
       },
       addPost(vuexContext, post) {
         const createdPost = {

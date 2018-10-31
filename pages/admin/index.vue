@@ -5,12 +5,12 @@
       <AppButton style="margin-left: 10px" @click="onLogout">Logout</AppButton>
     </section>
     <form @submit.prevent="updateSlug" v-if="!this.slug">
-      <label type="text" for="slug">Slug</label>
+      <label type="text" for="slug">Website Folder </label>
       <input id="slug" name="slug" :value="this.$store.getters.slug" @keyup.enter="updateSlug"/>
-      <button type="submit" v-if="!this.slugSet">Submit</button>
+      <button type="submit" v-if="!this.slugSet">Save</button>
     </form>
     <div v-else>
-      <label type="text" for="slug">Slug</label>  
+      <label type="text" for="slug">Website Folder </label>  
       <input type="text" id="slug" :value="this.slug" readonly/>
     </div>
 
@@ -27,6 +27,7 @@
 <script>
 
 import { mapState } from 'vuex'
+import slugify from 'slugify'
 
 export default {
   layout: "admin",
@@ -53,12 +54,17 @@ export default {
 
       const inputText = e.target.elements.slug.value
 
+      const slug = slugify(inputText, {
+          replacement: '-',    // replace spaces with replacement
+          remove: /[*+~.()'"!:@]/g,        // regex to remove characters
+          lower: true          // result in lower case
+      })
     // To prevent the form from submitting
     e.preventDefault();
 
-    this.$store.commit('updateSlug', inputText)
-    this.$store.dispatch("setSlug", {slug: inputText});
-    console.log(e.target.elements.slug.value)
+    this.$store.commit('updateSlug', slug)
+    this.$store.dispatch("setSlug", {slug: slug});
+    console.log(slug)
     e.target.elements.slug.value = "";
 
 
