@@ -65,7 +65,7 @@ const createStore = () => {
       },
       setSlug(vuexContext, slug) {
         return this.$axios
-          .$post(
+          .$put(
             "https://nuxt-course-project-e6cd3.firebaseio.com/settings.json?auth=" +
               vuexContext.state.token,
             slug
@@ -95,11 +95,11 @@ const createStore = () => {
       authenticateUser(vuexContext, authData) {
         let authUrl =
           "https://www.googleapis.com/identitytoolkit/v3/relyingparty/verifyPassword?key=" +
-          process.env.fbAPIKey;
+          process.env.apiKey;
         if (!authData.isLogin) {
           authUrl =
             "https://www.googleapis.com/identitytoolkit/v3/relyingparty/signupNewUser?key=" +
-            process.env.fbAPIKey;
+            process.env.apiKey;
         }
         return this.$axios
           .$post(authUrl, {

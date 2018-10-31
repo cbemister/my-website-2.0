@@ -55,6 +55,7 @@ module.exports = {
             "@nuxtjs/onesignal", 
             ["@nuxtjs/pwa", { icon: false }],
             ['@nuxtjs/google-tag-manager', { id: 'GTM-5S5FK6M' }],
+            "@nuxtjs/dotenv"
           ],
   axios: {
     baseURL: process.env.BASE_URL || "https://nuxt-course-project-e6cd3.firebaseio.com/",
@@ -85,7 +86,7 @@ module.exports = {
   },
   env: {
     baseUrl: process.env.BASE_URL || "https://nuxt-course-project-e6cd3.firebaseio.com/",
-    fbAPIKey: "AIzaSyCKo0hJiu9L7-slwC1qOd34kX8Et0iY314"
+    apiKey: process.env.apiKey
   },
   transition: {
     name: "fade",

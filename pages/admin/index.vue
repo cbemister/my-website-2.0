@@ -4,11 +4,16 @@
       <AppButton @click="$router.push('/admin/create')">Create Post</AppButton>
       <AppButton style="margin-left: 10px" @click="onLogout">Logout</AppButton>
     </section>
-    <form  @submit.prevent="updateSlug">
+    <form @submit.prevent="updateSlug" v-if="!this.slug">
       <label type="text" for="slug">Slug</label>
-      <input id="slug" name="slug" :value="slug" @keyup.enter="updateSlug">
-      <button type="submit" v-if="!this.slugSet"> Submit</button>
+      <input id="slug" name="slug" :value="this.$store.getters.slug" @keyup.enter="updateSlug"/>
+      <button type="submit" v-if="!this.slugSet">Submit</button>
     </form>
+    <div v-else>
+      <label type="text" for="slug">Slug</label>  
+      <input type="text" id="slug" :value="this.slug" readonly/>
+    </div>
+
 
     <section class="existing-posts">
       <h1>Existing Posts</h1>
@@ -46,13 +51,16 @@ export default {
     },
     updateSlug (e) {
 
+      const inputText = e.target.elements.slug.value
+
     // To prevent the form from submitting
     e.preventDefault();
 
-    this.$store.commit('updateSlug', e.target.elements.slug.value)
-    this.$store.dispatch("setSlug", slug);
+    this.$store.commit('updateSlug', inputText)
+    this.$store.dispatch("setSlug", {slug: inputText});
     console.log(e.target.elements.slug.value)
-    this.text = "";
+    e.target.elements.slug.value = "";
+
 
 
   }
