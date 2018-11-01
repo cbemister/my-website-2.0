@@ -1,12 +1,21 @@
 import Vuex from "vuex";
 import Cookie from "js-cookie";
+import firebase from 'firebase'
+
+
+firebase.auth().onAuthStateChanged(function (user) {
+  if (user) {
+    // Your code here
+  }
+})
 
 const createStore = () => {
   return new Vuex.Store({
     state: {
       loadedPosts: [],
       token: null,
-      slug: ''
+      slug: '',
+      userId: null
     },
     mutations: {
       updateSlug(state, slug) {
