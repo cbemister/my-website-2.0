@@ -1,22 +1,5 @@
-# nuxt-course
+# Chris Bemister's Portfolio Website (Version 2.0)
 
-> Nuxt.js course for Udemy
+## Overview
 
-## Build Setup
-
-``` bash
-# install dependencies
-$ yarn install
-
-# serve with hot reload at localhost:3000
-$ yarn run dev
-
-# build for production and launch server
-$ yarn run build
-$ yarn start
-
-# generate static project
-$ yarn run generate
-```
-
-For detailed explanation on how things work, checkout [Nuxt.js docs](https://nuxtjs.org).
+I am building this website as both a portfolio project to showcase what I have built, and as a platform to help me build new website functionality and applications. I am not always able to apply at my current position the advanced web development techniques that I have been learning. 
