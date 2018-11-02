@@ -62,7 +62,7 @@ const createStore = () => {
         };
         return this.$axios
           .$post(
-            "https://nuxt-course-project-e6cd3.firebaseio.com/posts.json?auth=" +
+            "https://chrisbemister83.firebaseio.com/posts.json?auth=" +
               vuexContext.state.token,
             createdPost
           )
@@ -74,7 +74,7 @@ const createStore = () => {
       setSlug(vuexContext, slug) {
         return this.$axios
           .$put(
-            "https://nuxt-course-project-e6cd3.firebaseio.com/settings.json?auth=" +
+            "https://chrisbemister83.firebaseio.com/settings.json?auth=" +
               vuexContext.state.token,
             slug
           )
@@ -86,7 +86,7 @@ const createStore = () => {
       editPost(vuexContext, editedPost) {
         return this.$axios
           .$put(
-            "https://nuxt-course-project-e6cd3.firebaseio.com/posts/" +
+            "https://chrisbemister83.firebaseio.com/posts/" +
               editedPost.id +
               ".json?auth=" +
               vuexContext.state.token,

@@ -1,8 +1,8 @@
 {
-  "name": "nuxt-course",
+  "name": "my-portfolio-website",
   "version": "1.0.0",
-  "description": "Nuxt.js course for Udemy",
-  "author": "Maximilian Schwarzmüller",
+  "description": "My portfolio website rebuilt using nuxt",
+  "author": "Chris Bemister",
   "private": true,
   "scripts": {
     "dev": "nuxt",
