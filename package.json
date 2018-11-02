@@ -11,7 +11,7 @@
     "generate": "nuxt generate"
   },
   "dependencies": {
-    "@nuxtjs/axios": "^4.5.2",
+    "@nuxtjs/axios": "^5.3.4",
     "@nuxtjs/dotenv": "^1.3.0",
     "@nuxtjs/google-tag-manager": "^2.1.0",
     "@nuxtjs/onesignal": "^2.6.0",
