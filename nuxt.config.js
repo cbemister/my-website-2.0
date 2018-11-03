@@ -98,8 +98,8 @@ module.exports = {
   serverMiddleware: [bodyParser.json(), "~/api"],
   generate: {
     routes: function() {
-      return $axios
-        .$get("/posts.json")
+      return axios
+        .get("https://chrisbemister83.firebaseio.com/posts.json")
         .then(res => {
           const routes = [];
           for (const key in res.data) {
