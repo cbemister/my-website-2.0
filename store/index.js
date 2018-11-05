@@ -32,9 +32,9 @@ const createStore = () => {
       }
     },
     actions: {
-      async nuxtServerInit(vuexContext, context) {
+      nuxtServerInit(vuexContext, context) {
         
-        const posts = await context.app.$axios
+        return context.app.$axios
             .$get("/posts.json")
             .then(data => {
               const postsArray = [];
@@ -44,16 +44,6 @@ const createStore = () => {
               vuexContext.commit("setPosts", postsArray);
             })
             .catch(e => context.error(e));
-
-        const settings = await context.app.$axios
-            .$get("/settings.json")
-            .then(data => {
-              const slug = data.slug
-              vuexContext.commit("updateSlug", slug);
-            })
-            .catch(e => context.error(e));
-
-          return { posts, settings }
       },
       addPost(vuexContext, post) {
         const createdPost = {
