@@ -53,7 +53,7 @@ module.exports = {
   modules: [
             "@nuxtjs/axios",
             "@nuxtjs/onesignal", 
-            ["@nuxtjs/pwa", { icon: false }],
+            ["@nuxtjs/pwa", { icon: true }],
             ['@nuxtjs/google-tag-manager', { id: 'GTM-5S5FK6M' }],
             "@nuxtjs/dotenv"
           ],
