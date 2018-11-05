@@ -5,18 +5,21 @@
       :show="displaySidenav"
       @close="displaySidenav = false" />
     <nuxt/>
+    <ContactCard />
   </div>
 </template>
 
 <script>
 import TheHeader from '@/components/Navigation/TheHeader'
 import TheSidenav from '@/components/Navigation/TheSidenav'
+import ContactCard from '@/components/Footer/ContactCard'
 
 export default {
   // middleware: 'log',
   components: {
     TheHeader,
-    TheSidenav
+    TheSidenav,
+    ContactCard
   },
   data() {
     return {

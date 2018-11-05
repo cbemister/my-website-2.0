@@ -2,8 +2,8 @@
 <div class="header-container">
   <header class="the-header">
     <TheSideNavToggle @toggle="$emit('sidenavToggle')" />
-    <div class="logo">
-      <nuxt-link to="/">ChrisBemister.com</nuxt-link>
+    <div class="logo site-name">
+      <nuxt-link to="/" class="site-name-link">ChrisBemister.com</nuxt-link>
     </div>
     <div class="spacer"></div>
     <div class="navigation-items">
@@ -41,10 +41,11 @@ export default {
   display: flex;
   justify-content: space-around;
   align-items: center;
-  background-color: black;
+  background-color: #00aeef;
   z-index: 100;
   box-sizing: border-box;
   padding: 0 20px;
+  text-align: center;
 }
 
 .logo {
