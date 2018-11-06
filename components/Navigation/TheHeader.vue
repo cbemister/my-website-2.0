@@ -3,7 +3,7 @@
   <header class="the-header">
     <TheSideNavToggle @toggle="$emit('sidenavToggle')" />
     <div class="logo site-name">
-      <nuxt-link to="/" class="site-name-link">ChrisBemister.com</nuxt-link>
+      <nuxt-link to="/" class=""><img src="~assets/images/white_logo_transparent.svg" alt="" height="80px" onerror="this.src='~assets/images/web_logo_736x264.png'; this.onerror=null;"/></nuxt-link>
     </div>
     <div class="spacer"></div>
     <div class="navigation-items">
@@ -31,13 +31,13 @@ export default {
 
 <style scoped>
 .header-container {
-  height: 60px;
+  height: 80px;
 }
 
 .the-header {
   width: 100%;
   position: fixed;
-  height: 60px;
+  height: 80px;
   display: flex;
   justify-content: space-around;
   align-items: center;
@@ -91,6 +91,6 @@ export default {
 .nav-item a:hover,
 .nav-item a:active,
 .nav-item a.nuxt-link-active {
-  color: red;
+  color: #222;
 }
 </style>
