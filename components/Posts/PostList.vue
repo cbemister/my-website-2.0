@@ -1,6 +1,6 @@
 <template>
   <section class="post-list">
-    <!-- <h2 class="section-header">Code.</h2> -->
+    <h2 class="section-header">Code.</h2>
     <PostPreview
       v-for="post in filteredPosts"
       :key="post.id"
