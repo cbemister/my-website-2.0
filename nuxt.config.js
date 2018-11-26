@@ -104,7 +104,8 @@ module.exports = {
           const routes = [];
           for (const key in res.data) {
             routes.push({
-              route: "/posts/" + key,
+              //route: "/posts/" + key,
+              route: res.data[key].slug,
               payload: {postData: res.data[key]}
             });
           }
