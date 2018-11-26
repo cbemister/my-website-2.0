@@ -4,7 +4,7 @@
       <AppButton @click="$router.push('/admin/create')">Create Post</AppButton>
       <AppButton style="margin-left: 10px" @click="onLogout">Logout</AppButton>
     </section>
-    <form @submit.prevent="updateSlug" v-if="!this.slug">
+    <!-- <form @submit.prevent="updateSlug" v-if="!this.slug">
       <label type="text" for="slug">Website Folder </label>
       <input id="slug" name="slug" :value="this.$store.getters.slug" @keyup.enter="updateSlug"/>
       <button type="submit" v-if="!this.slugSet">Save</button>
@@ -12,8 +12,7 @@
     <div v-else>
       <label type="text" for="slug">Website Folder </label>  
       <input type="text" id="slug" :value="this.slug" readonly/>
-    </div>
-
+    </div> -->
 
     <section class="existing-posts">
       <h1>Existing Posts</h1>
@@ -66,9 +65,6 @@ export default {
     this.$store.dispatch("setSlug", {slug: slug});
     console.log(slug)
     e.target.elements.slug.value = "";
-
-
-
   }
   }
 };
