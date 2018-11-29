@@ -32,6 +32,14 @@ export default {
       type: String,
       required: true
     },
+    pageType: {
+      type: String,
+      required: true
+    },
+    slug: {
+      type: String,
+      required: true
+    },
     thumbnail: {
       type: String,
       required: true
@@ -39,7 +47,15 @@ export default {
   },
   computed: {
     postLink() {
-      return this.isAdmin ? '/admin/' + this.id : '/posts/' + this.id
+
+      const pageType = this.pageType
+      let slug
+
+      pageType === 'page' ?  slug = this.slug : slug = '/posts' + this.slug
+
+      return this.isAdmin ? '/admin/' + this.id : slug
+
+      //return this.isAdmin ? '/admin/' + this.id : '/posts/' + this.id
     }
   }
 }

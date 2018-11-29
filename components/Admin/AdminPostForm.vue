@@ -5,12 +5,29 @@
     <!-- <AppControlInput v-model="editedPost.slug" slug>Slug</AppControlInput> -->
     <AppControlInput
       v-model="editedPost.shortDescription">Short Description</AppControlInput>
-    <label for="featured">Category: </label>
-    <select name="category" v-model="editedPost.category">
-      <option value="post" selected>Post</option>
-      <option value="page">Page</option>
-      <option value="thought">Thought</option>
-    </select>
+
+
+    <span>
+      <label for="pageType">Page Type: </label>
+      <select name="pageType" v-model="editedPost.pageType">
+        <option value="post" selected>Post</option>
+        <option value="page">Page</option>
+      </select>
+    </span>
+
+    <span v-if="editedPost.pageType === 'page'">
+      <label for="category">Category: </label>
+      <select name="category" v-model="editedPost.category">
+        <option value="Web Apps">Web Apps</option>
+        <option value="Technologies">Technologies</option>
+        <option value="Development">Development</option>
+        <option value="Sandbox">Sandbox</option>
+        <option value="Me">My _____ </option>
+      </select>
+    </span>
+
+
+
     <label for="featured">Featured: </label>
     <input v-model="editedPost.featured" type="checkbox" id="featured " name="featured" value="false">
     <AppControlInput v-model="editedPost.thumbnail">Thumbnail Link</AppControlInput>
@@ -47,6 +64,7 @@ export default {
             title: "",
             slug: "",
             category: "",
+            pageType: "",
             featured: false,
             thumbnail: "",
             content: "",
@@ -66,16 +84,20 @@ export default {
     },
     updateSlug (e) {
       const inputText = this.editedPost.title;
+      const inputPageType = this.editedPost.pageType;
       const inputCategory = this.editedPost.category;
+      let inputSlug = '';
       let slugPrefix = '';
 
-      if (inputCategory === 'post' || inputCategory === 'thought') {
-        slugPrefix = inputCategory + 's';
-      } 
+      if (inputPageType === 'page') {
 
-      console.log('inputText', inputText)
+        inputSlug = inputCategory + '/' +  inputText;
 
-      const slug = slugify(inputText, {
+      } else {
+        inputSlug = inputText;
+      }
+
+      const slug = slugify(inputSlug, {
           replacement: '-',    // replace spaces with replacement
           remove: /[*+~.()'"!:@]/g,        // regex to remove characters
           lower: true          // result in lower case

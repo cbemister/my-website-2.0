@@ -9,6 +9,8 @@
       :thumbnail="post.thumbnail"
       :title="post.title"
       :category="post.category"
+      :pageType="post.pageType"
+      :slug="post.slug"
       :featured="post.featured"
       />
   </section>
@@ -24,7 +26,7 @@ export default {
          if (this.pageType === 'home') {
           return post.featured === true;
          } else if (this.pageType === 'post') {
-          return post.category === this.pageType;
+          return post.pageType === 'post';
          } else {
            return true;
          }
