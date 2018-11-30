@@ -21,7 +21,7 @@
         <option value="Web Apps">Web Apps</option>
         <option value="Technologies">Technologies</option>
         <option value="Development">Development</option>
-        <option value="About Me">About Me</option>
+        <option value="About">About Me</option>
       </select>
     </span>
 
