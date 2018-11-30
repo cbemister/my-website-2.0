@@ -27,7 +27,18 @@ export default {
           return post.featured === true;
          } else if (this.pageType === 'post') {
           return post.pageType === 'post';
-         } else {
+         } else if (this.category === 'Web Apps') {
+           return post.category === 'Web Apps'
+         } else if (this.category === 'Technologies') {
+           return post.category === 'Technologies'
+         } else if (this.category === 'Functionality') {
+           return post.category === 'Functionality'
+         } else if (this.category === 'Development') {
+           return post.category === 'Development'
+         } else if (this.category === 'About Me') {
+           return post.category === 'About Me'
+         } 
+         else {
            return true;
          }
        })
@@ -51,6 +62,10 @@ export default {
       required: true
     },
     pageType: {
+      type: String,
+      default: ""
+    },
+    category: {
       type: String,
       default: ""
     }

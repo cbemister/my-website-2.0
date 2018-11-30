@@ -21,8 +21,7 @@
         <option value="Web Apps">Web Apps</option>
         <option value="Technologies">Technologies</option>
         <option value="Development">Development</option>
-        <option value="Sandbox">Sandbox</option>
-        <option value="Me">My _____ </option>
+        <option value="About Me">About Me</option>
       </select>
     </span>
 

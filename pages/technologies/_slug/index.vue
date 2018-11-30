@@ -1,6 +1,6 @@
 <template>
   <div class="single-post-page">
-    <section class="post" v-if="$route.params.page">
+    <section class="post">
       <h1 class="post-title">{{ loadedPost.title }}</h1>
       <div class="post-details">
         <div class="post-detail">Category: <br />{{ loadedPost.category }}</div>
@@ -19,29 +19,41 @@
 <script>
 export default {
   asyncData(context) {
-
-    var postId = getSlug()[0].id;
-    var category = getSlug()[0].category;
-
-    function getSlug() {
-      const posts = context.store.getters.loadedPosts;
-      return posts.filter((post) => {
-        return post.slug === context.params.page;
-      })
-    }
-
+    
     if (context.payload) {
       return {
         loadedPost: context.payload.postData
       }
     }
-    return context.app.$axios.$get('/posts/' + postId + '.json')
-      .then(data => {
-        return {
-          loadedPost: data
-        }
-      })
-      .catch(e => context.error(e))
+      return context.app.$axios
+        .$get("https://chrisbemister83.firebaseio.com/posts.json")
+        .then(res => {
+
+          for (const key in res) {
+
+            if (context.route.fullPath === res[key].slug) {
+
+                  return context.app.$axios.$get('/posts/' + res[key].id + '.json')
+                    .then(data => {
+                      return {
+                        loadedPost: data
+                      }
+                    })
+                    .catch(e => context.error(e))
+
+            }
+
+          }
+
+        });
+
+    // return context.app.$axios.$get('/posts/' + context.params.id + '.json')
+    //   .then(data => {
+    //     return {
+    //       loadedPost: data
+    //     }
+    //   })
+    //   .catch(e => context.error(e))
   },
   head: {
     title: 'A Blog Post'

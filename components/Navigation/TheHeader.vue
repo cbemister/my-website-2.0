@@ -8,8 +8,11 @@
     <div class="spacer"></div>
     <div class="navigation-items">
       <ul class="nav-list">
+        <li class="nav-item"><nuxt-link to="/web-apps">Portfolio</nuxt-link></li>
+        <li class="nav-item"><nuxt-link to="/technologies">Technologies</nuxt-link></li>
+        <li class="nav-item"><nuxt-link to="/development">Development</nuxt-link></li>
         <li class="nav-item"><nuxt-link to="/posts">Blog</nuxt-link></li>
-        <li class="nav-item"><nuxt-link to="/profile">Profile</nuxt-link></li>
+        <li class="nav-item"><nuxt-link to="/about">About</nuxt-link></li>
         <li class="nav-item"><nuxt-link to="/admin">Admin</nuxt-link></li>
       </ul>
     </div>

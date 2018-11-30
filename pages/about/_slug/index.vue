@@ -25,13 +25,35 @@ export default {
         loadedPost: context.payload.postData
       }
     }
-    return context.app.$axios.$get('/posts/' + context.params.id + '.json')
-      .then(data => {
-        return {
-          loadedPost: data
-        }
-      })
-      .catch(e => context.error(e))
+      return context.app.$axios
+        .$get("https://chrisbemister83.firebaseio.com/posts.json")
+        .then(res => {
+
+          for (const key in res) {
+
+            if (context.route.fullPath === res[key].slug) {
+
+                  return context.app.$axios.$get('/posts/' + res[key].id + '.json')
+                    .then(data => {
+                      return {
+                        loadedPost: data
+                      }
+                    })
+                    .catch(e => context.error(e))
+
+            }
+
+          }
+
+        });
+
+    // return context.app.$axios.$get('/posts/' + context.params.id + '.json')
+    //   .then(data => {
+    //     return {
+    //       loadedPost: data
+    //     }
+    //   })
+    //   .catch(e => context.error(e))
   },
   head: {
     title: 'A Blog Post'

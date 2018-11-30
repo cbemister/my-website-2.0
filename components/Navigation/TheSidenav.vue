@@ -24,12 +24,12 @@
             <div class="nav-header-line js-nav-header-line"></div>
           </div>
           <ul class="nav-categories" @click="$emit('close')">
-            <li class="nav-category js-nav-animate" href="/"><a href="/" class="nav-link">Home</a></li>
-            <li class="nav-category js-nav-animate" href="/apps/"><a href="/apps" class="nav-link">Apps</a></li>
-            <li class="nav-category js-nav-animate" href="/roadmap/"><a href="/roadmap" class="nav-link">Roadmap</a></li>
+            <li class="nav-category js-nav-animate"><a href="/web-apps" class="nav-link">Portfolio</a></li>
+            <li class="nav-category js-nav-animate"><a href="/technologies" class="nav-link">Technologies</a></li>
+            <li class="nav-category js-nav-animate"><a href="/development" class="nav-link">Development</a></li>
           </ul>
           <div class="nav-sublinks js-nav-animate">
-            <div class="js-nav-animate"><a class="nav-link nav-sublink" href="/sandbox/">Sandbox</a><a class="nav-link nav-sublink" href="/contact/">Contact</a><a class="nav-link nav-sublink" href="/login/">Login</a></div>
+            <div class="js-nav-animate"><a class="nav-link nav-sublink" href="/posts">Blog</a><a class="nav-link nav-sublink" href="/about">About</a><a class="nav-link nav-sublink" href="/admin">Admin</a></div>
           </div>
         </div>
       </div>
