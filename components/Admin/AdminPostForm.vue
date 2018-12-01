@@ -1,7 +1,8 @@
 <template>
   <form @submit.prevent="onSave">
     <AppControlInput v-model="editedPost.author">Author Name</AppControlInput>
-    <AppControlInput v-model="editedPost.title">Title</AppControlInput>
+    <AppControlInput v-model="editedPost.title" input-name="title">Title</AppControlInput>
+
     <!-- <AppControlInput v-model="editedPost.slug" slug>Slug</AppControlInput> -->
     <AppControlInput
       v-model="editedPost.shortDescription">Short Description</AppControlInput>
@@ -24,8 +25,6 @@
         <option value="About">About Me</option>
       </select>
     </span>
-
-
 
     <label for="featured">Featured: </label>
     <input v-model="editedPost.featured" type="checkbox" id="featured " name="featured" value="false">

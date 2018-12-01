@@ -1,12 +1,19 @@
 <template>
   <div class="input-control">
-    <!-- <label v-if="!hide"><slot /></label>  -->
     <label><slot /></label> 
     <input
-      v-if="controlType === 'input'"
+      v-if="controlType === 'input' && !inputName"
       v-bind="$attrs"
       :value="value"
       @input="$emit('input', $event.target.value)">
+    <input
+      v-else-if="inputName === 'title'"
+      v-bind="$attrs"
+      :value="value"
+      @keydown.tab="checkTitle"
+      @click="removeMessage"
+      @input="$emit('input', $event.target.value)">
+    <span v-if="duplicateTitle">{{ message }}</span>
     <textarea
       v-if="controlType === 'textarea'"
       rows="10"
@@ -17,10 +24,13 @@
 
 <script>
 
+const axios = require("axios");
+
 export default {
   data() {
     return {
-     
+      duplicateTitle: false,
+      message: 'Duplicate title found. Please modify your title.'
     }
   },
   name: 'AppInputControl',
@@ -29,9 +39,35 @@ export default {
       type: String,
       default: 'input'
     },
+    inputName: {
+      type: String,
+      default: ''
+    },
     value: {
       type: String,
       default: ''
+    }
+  },
+  methods: {
+    checkTitle () {
+
+      axios
+        .get("https://chrisbemister83.firebaseio.com/posts.json")
+        .then(res => {
+
+          for (const key in res.data) {
+
+            if (res.data[key].title === this.value) {                    
+                this.duplicateTitle = true
+            }
+
+          }
+
+        }).catch(e => e)
+
+    },
+    removeMessage() {
+      this.duplicateTitle = false
     }
   }
 }
