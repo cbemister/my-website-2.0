@@ -742,7 +742,6 @@ html {
   text-align: center;
   font-size: 16px;
   font-family: Source Sans Pro, Helvetica Neue, Arial, sans-serif;
-  height: 93vh;
 }
 .wrapper {
   position: relative;
@@ -755,14 +754,16 @@ html {
 .portfolio-intro-header {
   position: absolute;
   padding: 0 20px;
-  top: 65%;
-  left: 0;
-  right: 0;
-  transform: translateY(-100%);
+  top: -45vh;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 800px;
+  max-width: 80vw;
 }
-@media all and (max-width: 480px) {
+
+@media all and (min-width: 480px) and (max-width: 980px)  {
   .portfolio-intro-header {
-    font-size: 32px;
+    font-size: 6.5vw;
   }
 }
 .section-header {
@@ -1208,9 +1209,14 @@ html {
 }
 .contact-card {
   max-width: 1150px;
-  margin: 400px auto 0;
+  margin: 0 auto;
   padding: 40px;
 }
+
+.home-page .post-list {
+  margin-top: 70vh
+}
+
 .contact-card a {
   color: inherit;
 }
@@ -1227,7 +1233,7 @@ html {
     padding-left: 30px;
   }
   .contact-card > h2.section-header {
-    margin-top: 265px;
+    /* margin-top: 265px; */
 }
 }
 @media all and (max-width: 600px) {

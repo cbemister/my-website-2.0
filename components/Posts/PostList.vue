@@ -1,6 +1,7 @@
 <template>
   <section class="post-list">
-    <h2 class="section-header">Code.</h2>
+    <h2 class="section-header" v-if="pageType === 'home'">Code.</h2>
+    <!-- <h2 class="section-header" v-else>{{this.$route.name === 'web-apps' ? 'My Apps' : this.$route.name }}</h2> -->
     <PostPreview
       v-for="post in filteredPosts"
       :key="post.id"
@@ -22,6 +23,7 @@ import PostPreview from '@/components/Posts/PostPreview'
 export default {
    computed: {
      filteredPosts: function() {
+
        return this.posts.filter((post) => {
          if (this.pageType === 'home') {
           return post.featured === true;
@@ -36,7 +38,7 @@ export default {
          } else if (this.category === 'Development') {
            return post.category === 'Development'
          } else if (this.category === 'About Me') {
-           return post.category === 'About Me'
+           return post.category === 'About'
          } 
          else {
            return true;
@@ -46,7 +48,7 @@ export default {
  },
 //  data () {
 //    return {
-//      pageType: this.pageType
+//      pageType: this.pageType,
 //    }
 //  },
   components: {
@@ -63,7 +65,7 @@ export default {
     },
     pageType: {
       type: String,
-      default: ""
+      default: "home"
     },
     category: {
       type: String,
@@ -83,6 +85,7 @@ export default {
   flex-wrap: wrap;
   align-items: center;
   justify-content: center;
+  text-transform: capitalize;
 }
 </style>
 
