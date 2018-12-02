@@ -1,14 +1,14 @@
 <template>
   <form @submit.prevent="onSave">
     <AppControlInput v-model="editedPost.author">Author Name</AppControlInput>
-    <AppControlInput v-model="editedPost.title" :disabled="editedPost.existingPost === true" inputTitle>Title</AppControlInput>
+    <AppControlInput v-model="editedPost.title" :disabled="existingPost === true" inputTitle>Title</AppControlInput>
     <AppControlInput
       v-model="editedPost.shortDescription">Short Description</AppControlInput>
 
 
     <span>
       <label for="pageType">Page Type: </label>
-      <select name="pageType" v-model="editedPost.pageType" :disabled="editedPost.existingPost === true">
+      <select name="pageType" v-model="editedPost.pageType" :disabled="existingPost === true">
         <option value="post" :selected="true">Post</option>
         <option value="page">Page</option>
       </select>
@@ -16,7 +16,7 @@
 
     <span v-if="editedPost.pageType === 'page'">
       <label for="category">Category: </label>
-      <select name="category" v-model="editedPost.category" :disabled="editedPost.existingPost === true">
+      <select name="category" v-model="editedPost.category" :disabled="existingPost === true">
         <option value="Web Apps">Web Apps</option>
         <option value="Technologies">Technologies</option>
         <option value="Development">Development</option>
@@ -54,7 +54,7 @@ export default {
   data() {
     return {
       editedPost: this.post
-        ? { ...this.post, existingPost: true  }
+        ? { ...this.post }
         : {
             author: "Chris Bemister",
             title: "",
@@ -64,8 +64,10 @@ export default {
             featured: false,
             thumbnail: "",
             content: "",
-            shortDescription: ""
-          }
+            shortDescription: "",
+            existingPost: false 
+          },
+      existingPost: this.post ? true : false  
     };
   },
   computed: {
@@ -78,14 +80,13 @@ export default {
     onSave() {
       // Save the post
       this.updateSlug();
-
-      if (this.$store.state.formError === false) {
-        this.$emit('submit', this.editedPost)
-      } else {
-        console.log('Please fix error')
-      }
-
-
+      
+        if (this.$store.state.formError === false  || this.existingPost) {
+          this.$emit('submit', this.editedPost)
+        } else {
+          alert('Please fix the error before saving the form.')
+        }
+  
     },
     onCancel() {
       // Navigate back
