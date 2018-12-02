@@ -1,24 +1,22 @@
 <template>
   <form @submit.prevent="onSave">
     <AppControlInput v-model="editedPost.author">Author Name</AppControlInput>
-    <AppControlInput v-model="editedPost.title" input-name="title">Title</AppControlInput>
-
-    <!-- <AppControlInput v-model="editedPost.slug" slug>Slug</AppControlInput> -->
+    <AppControlInput v-model="editedPost.title" :disabled="editedPost.existingPost === true" inputTitle>Title</AppControlInput>
     <AppControlInput
       v-model="editedPost.shortDescription">Short Description</AppControlInput>
 
 
     <span>
       <label for="pageType">Page Type: </label>
-      <select name="pageType" v-model="editedPost.pageType">
-        <option value="post" selected>Post</option>
+      <select name="pageType" v-model="editedPost.pageType" :disabled="editedPost.existingPost === true">
+        <option value="post" :selected="true">Post</option>
         <option value="page">Page</option>
       </select>
     </span>
 
     <span v-if="editedPost.pageType === 'page'">
       <label for="category">Category: </label>
-      <select name="category" v-model="editedPost.category">
+      <select name="category" v-model="editedPost.category" :disabled="editedPost.existingPost === true">
         <option value="Web Apps">Web Apps</option>
         <option value="Technologies">Technologies</option>
         <option value="Development">Development</option>
@@ -30,7 +28,7 @@
     <input v-model="editedPost.featured" type="checkbox" id="featured " name="featured" value="false">
     <AppControlInput v-model="editedPost.thumbnail">Thumbnail Link</AppControlInput>
     <AppControlInput
-      control-type="textarea"
+      controlType="textarea"
       v-model="editedPost.content">Content</AppControlInput>
 
     <AppButton type="submit">Save</AppButton>
@@ -56,7 +54,7 @@ export default {
   data() {
     return {
       editedPost: this.post
-        ? { ...this.post }
+        ? { ...this.post, existingPost: true  }
         : {
             author: "Chris Bemister",
             title: "",
@@ -70,14 +68,28 @@ export default {
           }
     };
   },
+  computed: {
+    isDisabled() {
+      // evaluate whatever you need to determine disabled here...
+      return this.form.validated;
+    }
+  },
   methods: {
     onSave() {
       // Save the post
       this.updateSlug();
-      this.$emit('submit', this.editedPost)
+
+      if (this.$store.state.formError === false) {
+        this.$emit('submit', this.editedPost)
+      } else {
+        console.log('Please fix error')
+      }
+
+
     },
     onCancel() {
       // Navigate back
+
       this.$router.push("/admin");
     },
     updateSlug (e) {
@@ -92,7 +104,7 @@ export default {
         inputSlug = inputCategory + '/' +  inputText;
 
       } else {
-        inputSlug = inputText;
+        inputSlug = 'posts/' + inputText;
       }
 
       const slug = slugify(inputSlug, {
@@ -100,15 +112,9 @@ export default {
           remove: /[*+~.()'"!:@]/g,        // regex to remove characters
           lower: true          // result in lower case
       })
-    // To prevent the form from submitting
-    //e.preventDefault();
 
     this.editedPost.slug = slugPrefix + '/' + slug;
 
-    // this.$store.commit('updateSlug', slug)
-    // this.$store.dispatch("setSlug", {slug: slug});
-    console.log('slug ', slug)
-    //e.target.elements.slug.value = "";
     }
   }
 };

@@ -6,7 +6,7 @@
         :style="{backgroundImage: 'url(' + thumbnail + ')'}"></div>
       <div class="post-content">
         <h1>{{ title }}</h1>
-        <p>{{ category }}</p>
+        <p>{{ pageType === 'post' ? pageType : category }}</p>
       </div>
     </article>
   </nuxt-link>
@@ -51,7 +51,7 @@ export default {
       const pageType = this.pageType
       let slug
 
-      pageType === 'page' ?  slug = this.slug : slug = '/posts' + this.slug
+      pageType === 'page' ?  slug = this.slug : slug = this.slug
 
       return this.isAdmin ? '/admin/' + this.id : slug
 

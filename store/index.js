@@ -6,11 +6,12 @@ const createStore = () => {
     state: {
       loadedPosts: [],
       token: null,
-      slug: ''
+      formError: false
+
     },
     mutations: {
-      updateSlug(state, slug) {
-        state.slug = slug;
+      formError(state, status) {
+        state.formError = status;
       },
       setPosts(state, posts) {
         state.loadedPosts = posts;
@@ -61,18 +62,6 @@ const createStore = () => {
           })
           .catch(e => console.log(e));
       },
-      setSlug(vuexContext, slug) {
-        return this.$axios
-          .$put(
-            "https://chrisbemister83.firebaseio.com/settings.json?auth=" +
-              vuexContext.state.token,
-            slug
-          )
-          .then(data => {
-            console.log(data);
-          })
-          .catch(e => console.log(e));
-      },
       editPost(vuexContext, editedPost) {
         return this.$axios
           .$put(
@@ -89,6 +78,9 @@ const createStore = () => {
       },
       setPosts(vuexContext, posts) {
         vuexContext.commit("setPosts", posts);
+      },
+      updateFormError(vuexContext, status) {
+        vuexContext.commit("formError", status);
       },
       authenticateUser(vuexContext, authData) {
         let authUrl =

@@ -25,7 +25,9 @@ export default {
      filteredPosts: function() {
 
        return this.posts.filter((post) => {
-         if (this.pageType === 'home') {
+         if (this.isAdmin) {
+           return true
+         } else if (this.pageType === 'home') {
           return post.featured === true;
          } else if (this.pageType === 'post') {
           return post.pageType === 'post';
@@ -40,9 +42,6 @@ export default {
          } else if (this.category === 'About Me') {
            return post.category === 'About'
          } 
-         else {
-           return true;
-         }
        })
    }
  },

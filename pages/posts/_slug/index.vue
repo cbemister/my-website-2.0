@@ -21,33 +21,36 @@ export default {
   asyncData(context) {
     
     if (context.payload) {
+      
       return {
         loadedPost: context.payload.postData
       }
     }
+
  return context.app.$axios
         .$get("https://chrisbemister83.firebaseio.com/posts.json")
         .then(res => {
 
           for (const key in res) {
 
-            let slug = '/posts' + res[key].slug
+            let slug = res[key].slug
 
-            if (context.route.fullPath === slug) {
+            if (context.route.fullPath == slug) {
 
-                  return context.app.$axios.$get('/posts/' + res[key].id + '.json')
+                  return context.app.$axios.$get('/posts/' + key + '.json')
                     .then(data => {
+
                       return {
                         loadedPost: data
                       }
                     })
                     .catch(e => context.error(e))
 
-            }
+            } 
 
           }
 
-        });
+        }).catch(e => context.error(e));
 
   },
   head: {

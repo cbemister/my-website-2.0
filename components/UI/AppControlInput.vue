@@ -2,18 +2,19 @@
   <div class="input-control">
     <label><slot /></label> 
     <input
-      v-if="controlType === 'input' && !inputName"
+      v-if="controlType === 'input' && !inputTitle"
       v-bind="$attrs"
       :value="value"
       @input="$emit('input', $event.target.value)">
     <input
-      v-else-if="inputName === 'title'"
+      v-else-if="inputTitle"
       v-bind="$attrs"
       :value="value"
-      @keydown.tab="checkTitle"
-      @click="removeMessage"
+      ref="title"
+      @blur="checkTitle"
+      @keydown="removeMessage"
       @input="$emit('input', $event.target.value)">
-    <span v-if="duplicateTitle">{{ message }}</span>
+    <span class="message" v-if="duplicateTitle">{{ message }}</span>
     <textarea
       v-if="controlType === 'textarea'"
       rows="10"
@@ -39,9 +40,9 @@ export default {
       type: String,
       default: 'input'
     },
-    inputName: {
-      type: String,
-      default: ''
+    inputTitle: {
+      type: Boolean,
+      default: false
     },
     value: {
       type: String,
@@ -59,6 +60,10 @@ export default {
 
             if (res.data[key].title === this.value) {                    
                 this.duplicateTitle = true
+                this.setFocus()
+
+                this.$store.dispatch("updateFormError", true);
+
             }
 
           }
@@ -68,6 +73,11 @@ export default {
     },
     removeMessage() {
       this.duplicateTitle = false
+      this.$store.dispatch("updateFormError", false);
+    },
+    setFocus() {
+      // Note, you need to add a ref="search" attribute to your input.
+      this.$refs.title.focus();
     }
   }
 }
@@ -98,6 +108,11 @@ export default {
   background-color: #eee;
   outline: none;
 }
+
+.message {
+  color: red;
+}
+
 </style>
 
 
