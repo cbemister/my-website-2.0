@@ -475,6 +475,13 @@
     "@nuxtjs/meta" "^2.6.0"
     "@nuxtjs/workbox" "^2.6.0"
 
+"@nuxtjs/vuetify@^0.4.3":
+  version "0.4.3"
+  resolved "https://registry.yarnpkg.com/@nuxtjs/vuetify/-/vuetify-0.4.3.tgz#12427ad564be5ab652a0f10ff61bf48bdc0a9d06"
+  integrity sha512-al/bQz2dPQMszdvVBP8GpMhXpPzLhYnsqKt5Y6qlrLVSUOWvnnXEZY7xu1u1u2PEcq84COVlAqz34r1tLVHr8g==
+  dependencies:
+    vuetify "^1.2.5"
+
 "@nuxtjs/workbox@^2.6.0":
   version "2.6.0"
   resolved "https://registry.yarnpkg.com/@nuxtjs/workbox/-/workbox-2.6.0.tgz#eb057e7cbddc8f50bc181a5af9795cc93bd774d8"
@@ -8221,6 +8228,18 @@ vue@^2.5.17:
   version "2.5.17"
   resolved "https://registry.yarnpkg.com/vue/-/vue-2.5.17.tgz#0f8789ad718be68ca1872629832ed533589c6ada"
   integrity sha512-mFbcWoDIJi0w0Za4emyLiW72Jae0yjANHbCVquMKijcavBGypqlF7zHRgMa5k4sesdv7hv2rB4JPdZfR+TPfhQ==
+
+vuetify-loader@^1.0.8:
+  version "1.0.8"
+  resolved "https://registry.yarnpkg.com/vuetify-loader/-/vuetify-loader-1.0.8.tgz#db99b7325d0336acae3970d411bf7237b27d52bf"
+  integrity sha512-JbZhJqKsZCyBVHh7v4J2ECJPplJlYFnLIgEL4WPvOaaW5QWZ1YAZT2iA8AA/TcBD65Cxg3Ky9lr0r/wJtOMo9w==
+  dependencies:
+    loader-utils "^1.1.0"
+
+vuetify@^1.2.5:
+  version "1.3.12"
+  resolved "https://registry.yarnpkg.com/vuetify/-/vuetify-1.3.12.tgz#a605a978e88385ace60301fc50502fe53ae940fb"
+  integrity sha512-CJccj0EQcda6Hj5p4P0SKsaN5rkNj5HkZOGkXJOl6v+NJRM2tibrbNtFIGlEBMl+b2j8AnnLVkN3Q5T2nfed8w==
 
 vuex@^3.0.1:
   version "3.0.1"

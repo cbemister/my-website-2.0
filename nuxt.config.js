@@ -65,7 +65,8 @@ module.exports = {
             "@nuxtjs/onesignal", 
             ["@nuxtjs/pwa", { icon: true }],
             ['@nuxtjs/google-tag-manager', { id: 'GTM-5S5FK6M' }],
-            "@nuxtjs/dotenv"
+            "@nuxtjs/dotenv",
+            '@nuxtjs/vuetify'
           ],
   axios: {
     baseURL: process.env.BASE_URL || "https://chrisbemister83.firebaseio.com",
@@ -84,6 +85,10 @@ module.exports = {
           disable: true
       }
     }
+  },
+  vuetify: {
+    // Vuetify options
+    //  theme: { }
   },
   /*
   ** Build configuration
