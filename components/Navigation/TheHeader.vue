@@ -2,9 +2,6 @@
 <div class="header-container">
   <header class="the-header">
     <TheSideNavToggle @toggle="$emit('sidenavToggle')" />
-    <div class="logo site-name">
-      <nuxt-link to="/" class=""><img src="~assets/images/white_logo_transparent.svg" alt="" height="80px" onerror="this.src='~assets/images/web_logo_736x264.png'; this.onerror=null;"/></nuxt-link>
-    </div>
     <div class="spacer"></div>
     <div class="navigation-items">
       <ul class="nav-list">
