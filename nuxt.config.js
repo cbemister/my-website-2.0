@@ -97,7 +97,7 @@ module.exports = {
   manifest: {
     name: 'Web Apps',
     lang: 'en'
-  }
+  },
   /*
   ** Build configuration
   */
