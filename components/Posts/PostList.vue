@@ -1,7 +1,5 @@
 <template>
   <section class="post-list">
-    <h2 class="section-header" v-if="pageType === 'home'">Code.</h2>
-    <!-- <h2 class="section-header" v-else>{{this.$route.name === 'web-apps' ? 'My Apps' : this.$route.name }}</h2> -->
     <PostPreview
       v-for="post in filteredPosts"
       :key="post.id"
@@ -29,18 +27,16 @@ export default {
            return true
          } else if (this.pageType === 'home') {
           return post.featured === true;
-         } else if (this.pageType === 'post') {
-          return post.pageType === 'post';
-         } else if (this.category === 'Web Apps') {
-           return post.category === 'Web Apps'
-         } else if (this.category === 'Technologies') {
-           return post.category === 'Technologies'
-         } else if (this.category === 'Functionality') {
-           return post.category === 'Functionality'
-         } else if (this.category === 'Development') {
-           return post.category === 'Development'
-         } else if (this.category === 'About Me') {
-           return post.category === 'About'
+        //  } else if (this.pageType === 'post') {
+        //   return post.pageType === 'post';
+         } else if (this.category === 'portfolio') {
+           return post.category === 'portfolio'
+         } else if (this.category === 'technology') {
+           return post.category === 'technology'
+         } else if (this.category === 'sandbox') {
+           return post.category === 'sandbox'
+         } else if (this.category === 'about') {
+           return post.category === 'about'
          } 
        })
    }

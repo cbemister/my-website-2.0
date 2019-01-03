@@ -17,9 +17,9 @@
     <span v-if="editedPost.pageType === 'page'">
       <label for="category">Category: </label>
       <select name="category" v-model="editedPost.category" :disabled="existingPost === true">
-        <option value="Web Apps">Web Apps</option>
-        <option value="Technologies">Technologies</option>
-        <option value="Development">Development</option>
+        <option value="Portfolio">Portfolio</option>
+        <option value="Technology">Technology</option>
+        <option value="Sandbox">Sandbox</option>
         <option value="About">About Me</option>
       </select>
     </span>

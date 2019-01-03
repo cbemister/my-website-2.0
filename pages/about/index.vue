@@ -1,6 +1,6 @@
 <template>
   <div class="posts-page">
-    <PostList :posts="loadedPosts" pageType="page" category="About Me" />
+    <PostList :posts="loadedPosts" pageType="page" category="about" />
   </div>
 </template>
 

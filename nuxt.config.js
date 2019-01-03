@@ -19,7 +19,7 @@ module.exports = {
       {
         hid: "description",
         name: "description",
-        content: "My cool Web Development Blog"
+        content: "My website portfolio showcasing my web application development projects."
       }
     ],
     link: [
@@ -50,7 +50,7 @@ module.exports = {
   /*
   ** Global CSS
   */
-  css: ["~assets/styles/main.css", "~assets/css/bundled.min.css"],
+  css: ["~assets/styles/main.css"],
 
   /*
   ** Plugins to load before mounting the App
@@ -66,7 +66,7 @@ module.exports = {
             ["@nuxtjs/pwa", { icon: true }],
             ['@nuxtjs/google-tag-manager', { id: 'GTM-5S5FK6M' }],
             "@nuxtjs/dotenv",
-            '@nuxtjs/vuetify'
+            "@nuxtjs/vuetify"
           ],
   axios: {
     baseURL: process.env.BASE_URL || "https://chrisbemister83.firebaseio.com",
@@ -88,7 +88,10 @@ module.exports = {
   },
   vuetify: {
     // Vuetify options
-    //  theme: { }
+    theme: {
+      primary: '#00aeef',
+      secondary: '#8b8b8b'
+    }
   },
   /*
   ** Build configuration
