@@ -21,7 +21,7 @@ import { mapState } from 'vuex'
 import slugify from 'slugify'
 
 export default {
-  layout: "admin",
+  layout: "default",
   middleware: ["check-auth", "auth"],
   data() {
     return {
@@ -35,7 +35,7 @@ export default {
   methods: {
     onLogout() {
       this.$store.dispatch("logout");
-      this.$router.push("/admin/auth");
+      this.$router.push("/");
     }
   }
 };
