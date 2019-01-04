@@ -1,10 +1,23 @@
 <template>
-  <v-layout row justify-center>
+  <v-layout>
     <v-dialog v-model="dialog" width="600">
-    <v-btn slot="activator" class="secondary darken-1 px-4 ml-2" style="height: 80px" left flat dark>
+    <div class="absolute" v-if="drawer" slot="activator">
+          <v-list-tile>
+            <v-list-tile-action style="min-width: 45px;">
+              <v-icon>person_outline</v-icon>
+            </v-list-tile-action>
+
+            <v-list-tile-content>
+              <v-list-tile-title>Login</v-list-tile-title>
+            </v-list-tile-content>
+          </v-list-tile>
+    </div>
+    <v-btn v-else slot="activator" class="secondary darken-1 px-4 ml-2" style="height: 80px" left flat dark>
         <span class="mr-2">Login</span>
         <v-icon>person_outline</v-icon>
       </v-btn>
+      
+
       <v-card>
         <v-card-title>
           <span class="headline">Login Form</span>
@@ -36,11 +49,10 @@
 
 <script>
 
-import AppButton from "@/components/UI/AppButton";
-import AppControlInput from "@/components/UI/AppControlInput";
+// import AppButton from "@/components/UI/AppButton";
+// import AppControlInput from "@/components/UI/AppControlInput";
 
 export default {
-  name: "AdminAuthPage",
   data() {
     return {
       dialog: false,
@@ -52,6 +64,13 @@ export default {
         v => /.+@.+/.test(v) || 'E-mail must be valid'
       ],
     };
+  },
+  props: {
+    drawer: {
+      type: Boolean,
+      required: false
+    }
+
   },
   methods: {
     onSubmit() {

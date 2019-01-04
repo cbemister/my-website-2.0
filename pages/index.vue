@@ -3,7 +3,7 @@
     <v-parallax
     dark
     src="https://cdn.vuetifyjs.com/images/backgrounds/vbanner.jpg"
-    v-show="!loggedIn"
+    v-show="!isAuthenticated"
   >
     <v-layout
       align-center
@@ -15,8 +15,8 @@
       <!-- <h4 class="subheading">Build your application today!</h4> -->
     </v-layout>
   </v-parallax>
-  <Dashboard v-show="loggedIn"/>
-    <PostList :posts="loadedPosts" pageType="home"/>
+  <Dashboard v-show="isAuthenticated"/>
+    <PostList v-show="!isAuthenticated" :posts="loadedPosts" pageType="home"/>
   </div>
 </template>
 
@@ -25,15 +25,18 @@
 import Dashboard from '~/components/Dashboard.vue'
 
 export default {
+    middleware: ["check-auth"],
     data() {
       return {
-        loggedIn: false
       }
     },
     computed: {
       loadedPosts() {
         return this.$store.getters.loadedPosts
       },
+      isAuthenticated() {
+        return this.$store.getters.isAuthenticated
+      }
     },
     components: {
       Dashboard,

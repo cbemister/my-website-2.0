@@ -4,7 +4,7 @@
     <v-bottom-nav
       color="secondary"
       class="darken-2"
-      v-if="loggedIn && registeredGuest"
+      v-if="isAuthenticated && guest"
       :value="true"
       dark
       app
@@ -35,7 +35,7 @@
     <v-bottom-nav
       color="secondary"
       class="darken-2"
-      v-else-if="loggedIn && registeredAdmin"
+      v-else-if="isAuthenticated && admin"
       :value="true"
       dark
       app
@@ -55,12 +55,6 @@
         <span>Drafts</span>
         <v-icon>inbox</v-icon>
       </v-btn>
-
-      <v-btn dark>
-        <span>Logout</span>
-        <v-icon>exit_to_app</v-icon>
-      </v-btn>
-
 
     </v-bottom-nav>
 
@@ -88,28 +82,34 @@
         <v-icon>code</v-icon>
       </v-btn>
 
-
-
-      <v-btn dark>
-        <span>Login</span>
-        <v-icon>person_outline</v-icon>
-      </v-btn>
-
-
     </v-bottom-nav>
   </v-card>
 </template>
 
 <script>
+
+// import Login from '@/components/Login'
+
 export default {
+  middleware: ["check-auth"],
+  components: {
+    // Login
+  },
   data() {
     return {
       showNav: false,
-      loggedIn: true,
-      registeredGuest: false,
-      registeredAdmin: true,
+      guest: false,
+      admin: true,
 
     }
+  },
+  computed: {
+    isAuthenticated() {
+        return this.$store.getters.isAuthenticated
+      }
+  },
+  methods: {
+
   }
 }
 </script>

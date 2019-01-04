@@ -1,5 +1,19 @@
 <template>
   <div class="dashboard">
+    <div class="admin-page">
+    <!-- <section class="new-post">
+      <AppButton @click="$router.push('/admin/create')">Create Post</AppButton>
+      <AppButton style="margin-left: 10px" @click="onLogout">Logout</AppButton>
+    </section> -->
+
+    <section class="existing-posts">
+      <h1>Existing Posts</h1>
+      <PostList
+        isAdmin
+        pageType="page"
+        :posts="loadedPosts" />
+    </section>
+  </div>
     <v-container class="my-5">
       <h1 class="mainheading grey--text">Dashboard</h1>
       <v-layout row class="mb-3">
@@ -88,12 +102,18 @@
         ></v-pagination>
       </v-flex>
     </v-container>
-   
+
   </div>
 </template>
 
 <script>
+
+import { mapState } from 'vuex'
+import slugify from 'slugify'
+
 export default {
+  layout: "default",
+  middleware: ["check-auth", "auth"],
   data() {
     return {
       posts: [
@@ -146,11 +166,12 @@ export default {
     }
   },
   methods: {
-    unfocus() {
 
-    }
   },
   computed: {
+    loadedPosts() {
+      return this.$store.getters.loadedPosts;
+    },
     filteredPosts() {
 
       return this.posts.filter(post => {
@@ -220,4 +241,24 @@ export default {
   text-transform: capitalize;
 }
 
+</style>
+
+
+
+
+
+<style scoped>
+.admin-page {
+  padding: 20px;
+}
+
+.new-post {
+  text-align: center;
+  border-bottom: 2px solid #ccc;
+  padding-bottom: 10px;
+}
+
+.existing-posts h1 {
+  text-align: center;
+}
 </style>

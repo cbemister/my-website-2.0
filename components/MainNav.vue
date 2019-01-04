@@ -20,11 +20,11 @@
       <v-btn flat nuxt to="portfolio">Portfolio</v-btn>
       <v-btn flat nuxt to="technology">Technology</v-btn>
       <v-btn flat nuxt to="sandbox" style="margin-right: -15px;">Sandbox</v-btn>
-      <Register v-show="!loggedIn"/>
-      <Login v-show="!loggedIn" />
-      <Compose v-show="loggedIn" />
-      <div v-show="loggedIn">
-        <v-btn class="secondary darken-1 px-4 ml-1" style="height: 80px" left flat dark>
+      <Register v-show="!isAuthenticated"/>
+      <Login v-show="!isAuthenticated" />
+      <Compose v-show="isAuthenticated" />
+      <div v-show="isAuthenticated">
+        <v-btn class="secondary darken-1 px-4 ml-1" @click="onLogout" style="height: 80px" left flat dark>
           <span class="mr-2">Logout</span>
           <v-icon>exit_to_app</v-icon>
         </v-btn>
@@ -92,7 +92,7 @@
 
           <v-subheader>Account</v-subheader>
 
-        <div v-if="!loggedIn"> 
+        <div v-if="!isAuthenticated"> 
 
           <v-list-tile>
             <v-list-tile-action style="min-width: 45px;">
@@ -104,7 +104,9 @@
             </v-list-tile-content>
           </v-list-tile>
 
-          <v-list-tile>
+          <Login drawer></Login>
+
+          <!-- <v-list-tile>
             <v-list-tile-action style="min-width: 45px;">
               <v-icon>person_outline</v-icon>
             </v-list-tile-action>
@@ -112,12 +114,12 @@
             <v-list-tile-content>
               <v-list-tile-title>Login</v-list-tile-title>
             </v-list-tile-content>
-          </v-list-tile>
+          </v-list-tile> -->
 
 
         </div>
 
-        <div v-else> 
+        <div v-else @click="onLogout"> 
 
           <v-list-tile>
             <v-list-tile-action style="min-width: 45px;">
@@ -147,11 +149,11 @@ import Register from '@/components/Register'
 
 
 export default {
+  middleware: ["check-auth"],
   components: { Login, Compose, Register },
   data() {
     return {
       drawer: false,
-      loggedIn: false,
       internalLinks: [
             {
               'anchorText': 'Portfolio',
@@ -205,6 +207,17 @@ export default {
               'target': '_blank'
             }
           ]
+    }
+  },
+  computed: {
+    isAuthenticated() {
+        return this.$store.getters.isAuthenticated
+      }
+  },
+  methods: {
+    onLogout() {
+      this.$store.dispatch("logout");
+      this.$router.push("/");
     }
   }
 }
