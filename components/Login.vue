@@ -35,7 +35,7 @@
                 <v-card-actions class="layout row justify-end">
                   <v-spacer></v-spacer>
                   <v-btn color="blue darken-1" flat @click="dialog = false">Close</v-btn>
-                  <v-btn color="blue darken-1" type="submit" dark lowercase @click="dialog = false">Submit</v-btn>
+                  <v-btn color="blue darken-1" type="submit" dark lowercase @click="dialog = false && onSubmit">Submit</v-btn>
                 </v-card-actions>
               </v-layout>
             </v-form>

@@ -1,77 +1,57 @@
 <template>
   <v-layout row justify-center>
     <v-dialog v-model="dialog" width="600">
-
-    <!-- <v-btn slot="activator" class="secondary darken-1 px-5 ml-4" style="height: 80px" flat dark >Login</v-btn> -->
-        <v-btn slot="activator" class="secondary darken-1 pl-5 pr-4 mr-1" style="height: 80px; -webkit-clip-path: polygon(20% 0%, 100% 0, 100% 100%, 0% 100%); clip-path: polygon(20% 0%, 100% 0, 100% 100%, 0% 100%);" left dark>
-          <span class="mr-2">Compose</span>
-          <v-icon>create</v-icon>
+      <!-- <v-btn slot="activator" class="secondary darken-1 px-5 ml-4" style="height: 80px" flat dark >Login</v-btn> -->
+      <v-btn
+        slot="activator"
+        class="secondary darken-1 pl-5 pr-4 mr-1"
+        style="height: 80px; -webkit-clip-path: polygon(20% 0%, 100% 0, 100% 100%, 0% 100%); clip-path: polygon(20% 0%, 100% 0, 100% 100%, 0% 100%);"
+        left
+        dark
+      >
+        <span class="mr-2">Compose</span>
+        <v-icon>create</v-icon>
       </v-btn>
       <v-card>
-        <v-card-title>
-          <span class="headline">User Profile</span>
-        </v-card-title>
-        <v-card-text>
-          <v-container grid-list-md>
-            <v-layout wrap>
-              <v-flex xs12 sm6 md4>
-                <v-text-field label="Legal first name*" required></v-text-field>
-              </v-flex>
-              <v-flex xs12 sm6 md4>
-                <v-text-field label="Legal middle name" hint="example of helper text only on focus"></v-text-field>
-              </v-flex>
-              <v-flex xs12 sm6 md4>
-                <v-text-field
-                  label="Legal last name*"
-                  hint="example of persistent helper text"
-                  persistent-hint
-                  required
-                ></v-text-field>
-              </v-flex>
-              <v-flex xs12>
-                <v-text-field label="Email*" required></v-text-field>
-              </v-flex>
-              <v-flex xs12>
-                <v-text-field label="Password*" type="password" required></v-text-field>
-              </v-flex>
-              <v-flex xs12 sm6>
-                <v-select
-                  :items="['0-17', '18-29', '30-54', '54+']"
-                  label="Age*"
-                  required
-                ></v-select>
-              </v-flex>
-              <v-flex xs12 sm6>
-                <v-autocomplete
-                  :items="['Skiing', 'Ice hockey', 'Soccer', 'Basketball', 'Hockey', 'Reading', 'Writing', 'Coding', 'Basejump']"
-                  label="Interests"
-                  multiple
-                ></v-autocomplete>
-              </v-flex>
-            </v-layout>
-          </v-container>
-          <small>*indicates required field</small>
-        </v-card-text>
-        <v-card-actions>
-          <v-spacer></v-spacer>
-          <v-btn color="blue darken-1" flat @click="dialog = false">Close</v-btn>
-          <v-btn color="blue darken-1" flat @click="dialog = false">Save</v-btn>
-        </v-card-actions>
+        <v-form v-model="valid" @submit.prevent="onSubmit">
+          <v-card-title>
+            <span class="headline">Post Details</span>
+          </v-card-title>
+          <v-card-text>
+            <v-container>
+              <v-layout wrap>       
+                <v-flex xs12>
+                  <AdminPostForm @submit="onSubmittedPost"></AdminPostForm>
+                </v-flex>
+              </v-layout>
+            </v-container>
+            <small>*indicates required field</small>
+          </v-card-text>
+          <!-- <v-card-actions>
+            <v-spacer></v-spacer>
+            <v-btn color="blue darken-1" flat @click="dialog = false">Close</v-btn>
+            <v-btn color="blue darken-1" flat @click="dialog = false">Submit</v-btn>
+          </v-card-actions> -->
+        </v-form>
       </v-card>
     </v-dialog>
   </v-layout>
 </template>
 
 <script>
+import AdminPostForm from "@/components/Admin/AdminPostForm";
+
 export default {
   data() {
     return {
-        dialog: false
-    }
+      dialog: false
+    };
+  },
+  components: {
+    AdminPostForm
   }
-}
+};
 </script>
 
 <style>
-
 </style>
